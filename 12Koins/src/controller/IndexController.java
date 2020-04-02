@@ -16,12 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Arc;
-import javafx.scene.shape.ArcType;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.*;
 import model.Transaction;
 
 
@@ -30,9 +25,8 @@ public class IndexController implements Initializable {
     private Rectangle balanca;
     @FXML
     private Pane pesagem;
-    private Arc arc1, arc2;
+    private Ellipse arc1, arc2;
     private Path quadr1, quadr2;
-
     @FXML
     private Label lbMessage;
 
@@ -40,22 +34,32 @@ public class IndexController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        arc1 = new Arc(285, 364, 50, 50, 0, -180);
-        arc1.setFill(Color.YELLOW);
-        arc1.setStroke(Color.GREEN);
-        arc1.setType(ArcType.CHORD);
+//        arc1 = new Arc(285, 364, 50, 50, 0, -180);
+        arc1 = new Ellipse();
+        arc1.setFill(Color.WHITE);
+        arc1.setStroke(Color.BROWN);
+//        arc1.setType(ArcType.CHORD);
+        arc1.setRadiusX(50);
+        arc1.setRadiusY(15);
+        arc1.setCenterX(285);
+        arc1.setCenterY(364);
 
-        arc2 = new Arc(660, 364, 50, 50, 0, -180);
-        arc2.setFill(Color.BROWN);
+//        arc2 = new Arc(660, 364, 50, 50, 0, -180);
+        arc2 = new Ellipse();
+        arc2.setFill(Color.WHITE);
         arc2.setStroke(Color.BROWN);
-        arc2.setType(ArcType.CHORD);
+        arc2.setRadiusX(50);
+        arc2.setRadiusY(15);
+        arc2.setCenterX(660);
+        arc2.setCenterY(364);
+//        arc2.setType(ArcType.CHORD);
 
         quadr1 = new Path(new MoveTo(235, 364), new LineTo(285, 235), new LineTo(335, 364));
-        quadr1.setStrokeWidth(2.0);
-        quadr1.setStroke(Color.GREEN);
+        quadr1.setStrokeWidth(1.3);
+        quadr1.setStroke(Color.BROWN);
 
         quadr2 = new Path(new MoveTo(610, 364), new LineTo(660, 235), new LineTo(710, 364));
-        quadr2.setStrokeWidth(2.0);
+        quadr2.setStrokeWidth(1.3);
         quadr2.setStroke(Color.BROWN);
         
         pesagem.getChildren().add(arc1);
@@ -86,8 +90,7 @@ public class IndexController implements Initializable {
         Balance balance = new Balance();
         int groupA = balance.getGroupA();
         int groupB = balance.getGroupB();
-        System.out.println("group A: "+ groupA);
-        System.out.println("group B: "+ groupB);
+
         lbMessage.setText(balance.answer());
 
         if (groupA > groupB) {

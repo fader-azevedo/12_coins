@@ -15,12 +15,10 @@ public class Balance {
     }
 
     public int getGroupA(){
-        System.err.println(coins.subList(0,6).toString());
         return  coins.subList(0,6).stream().mapToInt(Integer::intValue).sum();
     }
 
     public int getGroupB(){
-        System.err.println(coins.subList(6,12).toString());
         return coins.subList(6,12).stream().mapToInt(Integer::intValue).sum();
     }
 
@@ -32,11 +30,10 @@ public class Balance {
     public String answer(){
         String answer = "";
         if(counterValue == 0){
-            answer = "The counterfeit coin is coin " + (counterfeit+1) + " and is Lighter (Menos Pesado)";
+            answer = "A moeda falsa é moeda " + (counterfeit+1) + " e é a mais leve";
         } else{
-            answer = "The counterfeit coin is coin " + (counterfeit+1) + " and is Heavier (Mais Pesado)";
+            answer = "A moeda falsa é moeda " + (counterfeit+1) + " e é a mais pesada";
         }
-
         return answer+ ' '+coins.toString();
     }
 }
